@@ -1,3 +1,14 @@
+# Clacky specific
+.1024*
+!.1024
+.breakpoints
+
+# Go specific
+/vendor/
+__debug_bin
+*.exe
+
+# Project specific
 config/config.json
 node_modules
 git_save
