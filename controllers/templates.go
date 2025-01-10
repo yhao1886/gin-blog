@@ -19,6 +19,7 @@ var tmpl *template.Template
 // LoadTemplates loads templates from views directory
 func LoadTemplates() {
 	tmpl = template.New("").Funcs(template.FuncMap{
+		"T":                   T,          // Add internationalization function
 		"isActiveLink":        isActiveLink,
 		"stringInSlice":       stringInSlice,
 		"formatDateTime":      formatDateTime,

@@ -2,11 +2,12 @@ package controllers
 
 import (
 	"encoding/json"
-	"io/fs"
+	"fmt"
 	"log/slog"
 	"os"
 	"path/filepath"
 
+	"github.com/denisbakhtin/ginblog/config"
 	"github.com/gin-gonic/gin"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
@@ -25,18 +26,25 @@ var (
 	translations map[string]map[string]string
 )
 
-func init() {
+// LoadTranslations initializes i18n bundle and loads all translation files
+func LoadTranslations() error {
 	bundle = i18n.NewBundle(language.English)
 	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
-	loadTranslations()
-}
+	
+	// Load translation files from config
+	for _, lang := range config.GetConfig().SupportedLanguages {
+		_, err := bundle.LoadMessageFile(fmt.Sprintf("i18n/%s.json", lang))
+		if err != nil {
+			return fmt.Errorf("failed to load %s translations: %w", lang, err)
+		}
+	}
 
-func loadTranslations() {
+	// Initialize translations map
 	translations = make(map[string]map[string]string)
+	// Read and parse translation files
 	files, err := os.ReadDir(translationsFolder)
 	if err != nil {
-		slog.Error("Failed to read translations directory", "error", err)
-		return
+		return fmt.Errorf("failed to read translations directory: %w", err)
 	}
 
 	for _, file := range files {
@@ -63,6 +71,7 @@ func loadTranslations() {
 			translations[langCode] = flattenMap(langMap)
 		}
 	}
+	return nil
 }
 
 func flattenMap(m map[string]interface{}) map[string]string {
@@ -88,11 +97,17 @@ func flattenMapRecursive(m map[string]interface{}, prefix string, result map[str
 }
 
 func GetCurrentLanguage(c *gin.Context) string {
+	if c == nil {
+		return defaultLang
+	}
 	lang, exists := c.Get(i18nContextKey)
 	if !exists {
 		return defaultLang
 	}
-	return lang.(string)
+	if str, ok := lang.(string); ok {
+		return str
+	}
+	return defaultLang
 }
 
 func GetTranslation(c *gin.Context, key string) string {
@@ -146,12 +161,26 @@ func SetLanguage(c *gin.Context) {
 
 func TranslateFunc(c *gin.Context) func(key string) string {
 	return func(key string) string {
+		if c == nil {
+			return key
+		}
 		return GetTranslation(c, key)
 	}
+}
+
+// T provides translation for templates
+func T(lang, key string) string {
+	localizer := i18n.NewLocalizer(bundle, lang)
+	msg, err := localizer.LocalizeMessage(&i18n.Message{ID: key})
+	if err != nil {
+		return key
+	}
+	return msg
 }
 
 // Add to template functions map
 func RegisterI18nTemplateFunc(c *gin.Context, h gin.H) {
 	h["t"] = TranslateFunc(c)
+	h["T"] = T
 	h["currentLang"] = GetCurrentLanguage(c)
 }

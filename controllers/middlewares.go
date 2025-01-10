@@ -9,6 +9,7 @@ import (
 	"github.com/denisbakhtin/ginblog/models"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
 
 //ContextData stores in gin context the common data, such as user info...
@@ -48,8 +49,8 @@ func I18nMiddleware() gin.HandlerFunc {
 		// Get language from cookie
 		lang, err := c.Cookie(langCookieName)
 		if err != nil || lang == "" {
-			// If no cookie found, use default language
-			lang = defaultLang
+			// If no cookie found, use default language from config
+			lang = config.GetConfig().DefaultLanguage
 			
 			// Set cookie with default language
 			c.SetCookie(langCookieName, lang, cookieMaxAge, "/", "", false, true)
@@ -64,7 +65,7 @@ func I18nMiddleware() gin.HandlerFunc {
 			}
 		}
 		if !supported {
-			lang = defaultLang
+			lang = config.GetConfig().DefaultLanguage
 		}
 
 		// Store language in context
@@ -75,15 +76,7 @@ func I18nMiddleware() gin.HandlerFunc {
 		c.Set("localizer", localizer)
 
 		// Add translation helper to the context
-		c.Set("T", func(key string, args ...interface{}) string {
-			if translations[lang] != nil {
-				if val, ok := translations[lang][key]; ok {
-					return fmt.Sprintf(val, args...)
-				}
-			}
-			return key
-		})
-
+		c.Set("T", TranslateFunc(c))
 		c.Next()
 	}
 }
