@@ -21,7 +21,8 @@ require (
 	github.com/jackc/pgx/v5 v5.5.5 // indirect
 	github.com/jackc/puddle/v2 v2.2.1 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	golang.org/x/sync v0.8.0 // indirect
+	github.com/nicksnyder/go-i18n/v2 v2.4.1 // indirect
+	golang.org/x/sync v0.10.0 // indirect
 )
 
 require (
@@ -56,7 +57,7 @@ require (
 	golang.org/x/arch v0.8.0 // indirect
 	golang.org/x/net v0.26.0 // indirect
 	golang.org/x/sys v0.23.0 // indirect
-	golang.org/x/text v0.17.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
 	google.golang.org/protobuf v1.34.1 // indirect
 	gopkg.in/loremipsum.v1 v1.1.2
 	gopkg.in/yaml.v3 v3.0.1 // indirect

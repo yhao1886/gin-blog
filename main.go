@@ -23,6 +23,7 @@ func main() {
 	models.AutoMigrate()
 	models.SeedDB() // seed database with demo data if empty
 	controllers.LoadTemplates()
+	controllers.LoadTranslations()
 
 	//Periodic tasks
 	gocron.Every(1).Day().Do(controllers.CreateXMLSitemap)
@@ -49,11 +50,13 @@ func main() {
 	}))
 
 	router.StaticFS("/public", http.Dir(config.PublicPath())) //better use nginx to serve assets (Cache-Control, Etag, fast gzip, etc)
-	router.Use(controllers.ContextData())
+ router.Use(controllers.ContextData())
+ 	router.Use(controllers.I18nMiddleware())
 
-	router.GET("/", controllers.HomeGet)
-	router.NoRoute(controllers.NotFound)
-	router.NoMethod(controllers.MethodNotAllowed)
+ 	router.GET("/", controllers.HomeGet)
+ 	router.GET("/language", controllers.SetLanguage)
+ 	router.NoRoute(controllers.NotFound)
+ 	router.NoMethod(controllers.MethodNotAllowed)
 
 	if config.GetConfig().SignupEnabled {
 		router.GET("/signup", controllers.SignUpGet)

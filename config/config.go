@@ -11,19 +11,23 @@ import (
 
 // Configs contains application configurations for all gin modes
 type Configs struct {
-	Debug   Config
-	Release Config
+	DefaultLanguage   string   `json:"default_language"`
+	SupportedLanguages []string `json:"supported_languages"`
+	Debug             Config
+	Release           Config
 }
 
 // Config contains application configuration for active gin mode
 type Config struct {
-	Public        string `json:"public"`
-	Domain        string `json:"domain"`
-	Port          int    `json:"port"`
-	SessionSecret string `json:"session_secret"`
-	SignupEnabled bool   `json:"signup_enabled"` //always set to false in release mode (config.json)
-	Database      DatabaseConfig
-	Oauth         OauthConfig
+	Public            string   `json:"public"`
+	Domain            string   `json:"domain"`
+	Port              int      `json:"port"`
+	SessionSecret     string   `json:"session_secret"`
+	SignupEnabled     bool     `json:"signup_enabled"` //always set to false in release mode (config.json)
+	DefaultLanguage   string   `json:"default_language"`
+	SupportedLanguages []string `json:"supported_languages"`
+	Database          DatabaseConfig
+	Oauth             OauthConfig
 }
 
 // DatabaseConfig contains database connection info
@@ -54,6 +58,11 @@ func LoadConfig() {
 	if err != nil {
 		panic(err)
 	}
+	// Copy top-level language settings into both configs
+	configs.Debug.DefaultLanguage = configs.DefaultLanguage
+	configs.Debug.SupportedLanguages = configs.SupportedLanguages
+	configs.Release.DefaultLanguage = configs.DefaultLanguage
+	configs.Release.SupportedLanguages = configs.SupportedLanguages
 	switch gin.Mode() {
 	case gin.DebugMode:
 		config = &configs.Debug

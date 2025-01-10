@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "home": "Home",
+    "posts": "Posts",
+    "about": "About",
+    "login": "Login",
+    "register": "Register",
+    "language": "Language"
+  },
+  "common": {
+    "search": "Search",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+  "header": {
+    "menu": "Menu",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "post": {
+    "title": "Title",
+    "content": "Content", 
+    "author": "Author",
+    "date": "Date",
+    "tags": "Tags",
+    "read_more": "Read More",
+    "no_posts": "No posts found",
+    "category": "Category"
+  },
+  "comment": {
+    "comments": "Comments",
+    "leave_comment": "Leave a comment",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Submit Comment",
+    "reply": "Reply",
+    "no_comments": "No comments yet"
+  },
+  "error": {
+    "not_found": "Page not found",
+    "server_error": "Internal server error",
+    "forbidden": "Access forbidden",
+    "unauthorized": "Unauthorized access"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "remember_me": "Remember me",
+    "forgot_password": "Forgot Password?",
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
+    "or": "OR"
+  },
+  "dashboard": {
+    "overview": "Overview",
+    "new_post": "New Post",
+    "edit_post": "Edit Post",
+    "manage_users": "Manage Users",
+    "manage_comments": "Manage Comments",
+    "site_settings": "Site Settings",
+    "statistics": "Statistics"
+  },
+  "footer": {
+    "about": "About Us",
+    "contact": "Contact",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "copyright": "© 2024 All rights reserved"
+  },
+  "messages": {
+    "success": "Operation successful",
+    "error": "Operation failed",
+    "confirm": "Are you sure?",
+    "saved": "Changes saved successfully",
+    "deleted": "Successfully deleted"
+  }
+}

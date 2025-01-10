@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "home": "首页",
+    "posts": "文章",
+    "about": "关于",
+    "login": "登录",
+    "register": "注册",
+    "language": "语言"
+  },
+  "common": {
+    "search": "搜索",
+    "submit": "提交",
+    "cancel": "取消"
+  },
+  "header": {
+    "menu": "菜单",
+    "dashboard": "控制台",
+    "logout": "退出",
+    "profile": "个人资料",
+    "settings": "设置"
+  },
+  "post": {
+    "title": "标题",
+    "content": "内容",
+    "author": "作者",
+    "date": "日期",
+    "tags": "标签",
+    "read_more": "阅读更多",
+    "no_posts": "暂无文章",
+    "category": "分类"
+  },
+  "comment": {
+    "comments": "评论",
+    "leave_comment": "发表评论",
+    "name": "姓名",
+    "email": "邮箱",
+    "message": "留言",
+    "submit": "提交评论",
+    "reply": "回复",
+    "no_comments": "暂无评论"
+  },
+  "error": {
+    "not_found": "页面未找到",
+    "server_error": "服务器内部错误",
+    "forbidden": "访问被禁止",
+    "unauthorized": "未经授权的访问"
+  },
+  "auth": {
+    "email": "邮箱",
+    "password": "密码",
+    "confirm_password": "确认密码",
+    "remember_me": "记住我",
+    "forgot_password": "忘记密码？",
+    "sign_in": "登录",
+    "sign_up": "注册",
+    "or": "或"
+  },
+  "dashboard": {
+    "overview": "概览",
+    "new_post": "新建文章",
+    "edit_post": "编辑文章",
+    "manage_users": "用户管理",
+    "manage_comments": "评论管理",
+    "site_settings": "网站设置",
+    "statistics": "统计数据"
+  },
+  "footer": {
+    "about": "关于我们",
+    "contact": "联系我们",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "copyright": "© 2024 版权所有"
+  },
+  "messages": {
+    "success": "操作成功",
+    "error": "操作失败",
+    "confirm": "确认执行此操作？",
+    "saved": "更改已保存",
+    "deleted": "已删除",
+    "updated": "已更新"
+  }
+}

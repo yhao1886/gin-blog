@@ -2,14 +2,14 @@
 <!-- Fixed navbar -->
 <div class="navbar navbar-expand-lg bg-secondary fixed-top" role="navigation">
   <div class="container">
-    <a class="navbar-brand" href="/">My Blog</a>
+    <a class="navbar-brand" href="/">{{T "nav.brand"}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
-    <div class="collapse navbar-collapse" id="navbarContent">
+  <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item {{isActiveLink .Context "/"}}"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item {{isActiveLink .Context "/"}}"><a class="nav-link" href="/">{{T "nav.home"}}</a></li>
       </ul>
       {{if isUserAuthenticated .Context}}
       <ul class="navbar-nav">
@@ -22,10 +22,20 @@
       </ul>
       {{else}}
       <ul class="navbar-nav">
-        <li class="nav-item {{isActiveLink .Context "/signin"}}"><a class="nav-link" href="/signin"><i class="bi bi-box-arrow-in-right"></i>Sign In</a></li>
+        <li class="nav-item {{isActiveLink .Context "/signin"}}"><a class="nav-link" href="/signin"><i class="bi bi-box-arrow-in-right"></i>{{T "nav.login"}}</a></li>
         {{if signUpEnabled .Context}}
-        <li class="nav-item {{isActiveLink .Context "/signup"}}"><a class="nav-link" href="/signup"><i class="bi bi-person-add"></i>Sign Up</a></li>
+        <li class="nav-item {{isActiveLink .Context "/signup"}}"><a class="nav-link" href="/signup"><i class="bi bi-person-add"></i>{{T "nav.register"}}</a></li>
         {{end}}
+        <!-- Language Selector -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-globe"></i> {{T "nav.language"}}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item{{if eq .Context.Lang "en"}} active{{end}}" href="/language?lang=en">English</a></li>
+            <li><a class="dropdown-item{{if eq .Context.Lang "zh"}} active{{end}}" href="/language?lang=zh">中文</a></li>
+          </ul>
+        </li>
       </ul>
       {{end}}
     </div><!--/.nav-collapse -->
