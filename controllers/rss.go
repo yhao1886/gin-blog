@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/denisbakhtin/ginblog/config"
-	"github.com/denisbakhtin/ginblog/models"
+	"ginblog/config"
+	"ginblog/models"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/feeds"
 )
 
-//RssGet handles GET /rss route
+// RssGet handles GET /rss route
 func RssGet(c *gin.Context) {
 	now := time.Now()
 	domain := config.GetConfig().Domain

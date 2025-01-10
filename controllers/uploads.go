@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/denisbakhtin/ginblog/config"
+	"ginblog/config"
 	"github.com/gin-gonic/gin"
 )
 

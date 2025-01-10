@@ -11,7 +11,7 @@ import (
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 
-	"github.com/denisbakhtin/ginblog/models"
+	"ginblog/models"
 )
 
 var tmpl *template.Template

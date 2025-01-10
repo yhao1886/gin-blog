@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/denisbakhtin/ginblog/models"
+	"ginblog/models"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
@@ -73,7 +73,7 @@ func TagCreate(c *gin.Context) {
 func TagDelete(c *gin.Context) {
 	db := models.GetDB()
 	tag := models.Tag{}
-	
+
 	db.Where("slug = ?", c.Param("slug")).First(&tag)
 	if len(tag.Title) == 0 {
 		c.HTML(http.StatusNotFound, "errors/404", nil)

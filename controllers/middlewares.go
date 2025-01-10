@@ -5,13 +5,13 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/denisbakhtin/ginblog/config"
-	"github.com/denisbakhtin/ginblog/models"
+	"ginblog/config"
+	"ginblog/models"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
-//ContextData stores in gin context the common data, such as user info...
+// ContextData stores in gin context the common data, such as user info...
 func ContextData() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		session := sessions.Default(c)
@@ -30,7 +30,7 @@ func ContextData() gin.HandlerFunc {
 	}
 }
 
-//AuthRequired grants access to authenticated users, requires SharedData middleware
+// AuthRequired grants access to authenticated users, requires SharedData middleware
 func AuthRequired() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if user, _ := c.Get("User"); user != nil {

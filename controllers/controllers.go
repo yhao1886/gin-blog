@@ -6,8 +6,8 @@ import (
 	"path"
 	"time"
 
-	"github.com/denisbakhtin/ginblog/config"
-	"github.com/denisbakhtin/ginblog/models"
+	"ginblog/config"
+	"ginblog/models"
 	"github.com/denisbakhtin/sitemap"
 	"github.com/gin-gonic/gin"
 	csrf "github.com/utrack/gin-csrf"

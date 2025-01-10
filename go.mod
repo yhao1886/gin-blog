@@ -1,4 +1,4 @@
-module github.com/denisbakhtin/ginblog
+module ginblog
 
 go 1.23
 

@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"os"
 
+	"ginblog/config"
+	"ginblog/controllers"
+	"ginblog/models"
 	"github.com/claudiu/gocron"
-	"github.com/denisbakhtin/ginblog/config"
-	"github.com/denisbakhtin/ginblog/controllers"
-	"github.com/denisbakhtin/ginblog/models"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/memstore"
 	"github.com/gin-gonic/gin"

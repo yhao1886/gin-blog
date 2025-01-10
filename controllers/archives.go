@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/denisbakhtin/ginblog/models"
+	"ginblog/models"
 	"github.com/gin-gonic/gin"
 )
 
