@@ -1,6 +1,6 @@
 module github.com/denisbakhtin/ginblog
 
-go 1.22.6
+go 1.23
 
 require (
 	github.com/claudiu/gocron v0.0.0-20151103142354-980c96bf412b
